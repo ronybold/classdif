@@ -1,1 +1,0 @@
-web: gunicorn classdif.wsgi --log-file -
