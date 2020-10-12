@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'widget_tweaks',
     'user_app',
+    'django_pandas',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+FILE_ROOT = os.path.join(BASE_DIR, 'plantuml')
+FILE_URL = '/plantuml/'
 LOGIN_URL = 'user_app:login'
 LOGIN_REDIRECT_URL = 'classdif_app:index'
 LOGOUT_REDIRECT_URL = 'classdif_app:index'

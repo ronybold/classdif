@@ -5,6 +5,8 @@ from .models import Post, Tag
 from .forms import PostAddForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.views.generic import ListView
+import os
 # Create your views here.
 def is_valid_q(q):
    return q != '' and q is not None
@@ -15,7 +17,7 @@ def index(request):
    date_min = request.GET.get('date_min')
    date_max = request.GET.get('date_max')
    tag = request.GET.get('tag')
-
+   files = os.listdir('media/plantuml')
    if is_valid_q(title_or_user):
        posts = posts.filter(Q(title__icontains=title_or_user)
                       | Q(user__username__icontains=title_or_user)
@@ -29,9 +31,10 @@ def index(request):
 
    if is_valid_q(tag) and tag != 'タグを選択...':
        posts = posts.filter(tag__tag=tag)
-   
+
+
    return render(request, 'classdif_app/index.html', 
-   {'posts': posts, 'title_or_user': title_or_user , 'date_min': date_min, 'date_max': date_max ,'tag': tag})
+   {'posts': posts, 'title_or_user': title_or_user , 'date_min': date_min, 'date_max': date_max ,'tag': tag,'files':files})
 def detail(request, post_id):
      post = get_object_or_404(Post, id=post_id)
      return render(request, 'classdif_app/detail.html', {'post': post})
@@ -62,3 +65,4 @@ def delete(request, post_id):
    post = get_object_or_404(Post, id=post_id)
    post.delete()
    return redirect('classdif_app:index')
+

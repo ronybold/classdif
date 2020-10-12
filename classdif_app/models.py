@@ -12,10 +12,14 @@ class Tag(models.Model):
 class Post(models.Model):
    title = models.CharField('タイトル', max_length=35)
    text = models.TextField('本文')
-   image = models.ImageField('画像', upload_to = 'images', blank=True)
+   image = models.ImageField('クラス図', upload_to = 'images', blank=True)
+   code = models.FileField('plantuml', upload_to = 'plantuml', blank=True)
    created_at = models.DateTimeField('投稿日', default=timezone.now)
    tag = models.ForeignKey(Tag, verbose_name = 'タグ', on_delete=models.PROTECT)
    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
    def __str__(self):
        return self.title
+   def file_name(self):
+       path = os.path.basename(self.code.name)
+       return path

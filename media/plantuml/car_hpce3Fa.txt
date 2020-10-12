@@ -1,0 +1,27 @@
+@startuml
+
+skinparam class{
+  ArrowColor Black
+  BorderColor Black
+}
+skinparam sterrotypeCBackgroundColor White
+
+class 車 {
+  -メーカー
+  -ナンバー
+  -車種
+
+  +走る()
+  +曲がる()
+  +止まる()
+}
+車 "1" *-- "4" タイヤ
+
+class タイヤ {
+  -インチ
+
+  +回転する()
+  +停止する()
+}
+
+@enduml

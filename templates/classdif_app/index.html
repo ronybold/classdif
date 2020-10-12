@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="mt-5 pt-4 text-center">ブログサイト</h1>
+<h1 class="mt-5 pt-4 text-center">クラス図比較</h1>
 <button data-toggle="modal" data-target=".bd-example-modal-lg" style="margin: 0 auto;" type="button" class="btn btn-primary d-block my-3 px-5"><i class="fa fa-search">検索</i></button>
  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-xl">
@@ -35,11 +35,27 @@
 </table>
 {% endif %}
 <div class="d-flex justify-content-center flex-wrap">
+  <form action="#" method="post">
+    <select name="plantuml1">
+    {% for file in files %}
+      <option>{{file}}</option>
+    {% endfor %}
+    </select>
+    <select name="plantuml2">
+    {% for file in files %}
+      <option>{{file}}</option>
+    {% endfor %}
+    </select>
+    <input type="submit" name="button" value="送信">
+  </form>
+</div>
+<div class="d-flex justify-content-center flex-wrap">
 {% for post in posts%}
 <a href="{% url 'classdif_app:detail' post_id=post.id %}">
  <div class="card m-4" style="min-width: 300; max-height: 490;">
    {% if post.image %}
    <img style="max-width: 300; max-height: 300;" class="card-img-top" src="{{ post.image.url }}">
+   <!--{{ post.code.file_name }}-->
    {% else %}
    <div class="p-1 border border-secondary text-center pt-5" style="min-width: 300; min-height: 225;">No Image</div>
    {% endif %}
