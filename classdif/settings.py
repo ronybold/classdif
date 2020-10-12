@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'bootstrap4',
     'widget_tweaks',
     'user_app',
-    'django_pandas',
 ]
 
 MIDDLEWARE = [
